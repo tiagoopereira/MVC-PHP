@@ -1,0 +1,28 @@
+version: "3.7" 
+services:
+  php:
+    build:
+      context: .
+    image: phpmysql
+    container_name: phpmysql
+    ports:
+      - "80:80"
+    volumes:
+      - ".:/var/www/html/"
+    command: php -S 0.0.0.0:80 -t public/
+    links:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql/
+    environment:
+      MYSQL_DATABASE: 'sistema_reservas'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
+volumes:
+  mysql:
