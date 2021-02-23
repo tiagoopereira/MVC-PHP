@@ -8,5 +8,5 @@ Realizei este projeto em um curso de PHP e resolvi adaptá-lo ao padrão MVC (co
   - Rodar o script *db.sql* no banco de dados.
 - Sem docker:
   - php -S 0.0.0.0:80 -t public/
-  - Configurar os dados de acesso ao banco em src/Repository/BaseRepository.php, se necessário.
+  - Configurar os dados de acesso ao banco em *src/Repository/BaseRepository.php*, se necessário.
   - Rodar o script *db.sql* no banco de dados.
