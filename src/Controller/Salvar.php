@@ -50,8 +50,8 @@ class Salvar extends HtmlRender implements ControllerInterface
 
         $data = [
             'carro' => $carro,
-            'data_inicio' => $data_inicio,
-            'data_fim' => $data_fim,
+            'data_inicio' => $this->trataData($data_inicio),
+            'data_fim' => $this->trataData($data_fim),
             'nome_reservante' => $nome_reservante
         ];
 
@@ -61,7 +61,16 @@ class Salvar extends HtmlRender implements ControllerInterface
             $this->reservaRepository->reservar($reserva);
             header('Location: /home');
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
+            header('Location: /reservar?error=reservado');
+            exit();
         }
+    }
+
+    private function trataData(string $data): string
+    {
+        $dataArray = explode('/', $data);
+        $novaData = $dataArray[2] . '-' . $dataArray[1] . '-' . $dataArray[0];
+        
+        return $novaData;
     }
 }

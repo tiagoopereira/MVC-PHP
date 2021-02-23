@@ -37,13 +37,35 @@ class Listar extends HtmlRender implements ControllerInterface
         // VARIÁVEL QUE CHECA QUAL É O ÚLTIMO DIA DO CALENDÁRIO;
         $data_fim = date('Y-m-d', strtotime((($dia1 + ($linhas * 7)) - 1) . 'days', strtotime($data)));
 
+        $messtr = $this->validaMes($mes);
+        $subtitulo = $messtr . " de " . $ano;
+
         echo $this->renderizaHtml('reserva/listar.php', [
             'reservas' => $this->reservaRepository->findAll($data_inicio, $data_fim),
             'mes' => $mes,
+            'subtitulo' => $subtitulo,
             'ano' => $ano,
             'data_inicio' => $data_inicio,
             'data_fim' => $data_fim,
             'linhas' => $linhas
         ]);
+    }
+
+    private function validaMes(int $mes): string
+    {
+        return match ($mes) {
+            1 => "Janeiro",
+            2 => "Fevereiro",
+            3 => "Março",
+            4 => "Abril",
+            5 => "Maio",
+            6 => "Junho",
+            7 => "Julho",
+            8 => "Agosto",
+            9 => "Setembro",
+            10 => "Outubro",
+            11 => "Novembro",
+            12 => "Dezembro"
+        };
     }
 }

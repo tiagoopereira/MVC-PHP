@@ -15,9 +15,16 @@ class Formulario extends HtmlRender implements ControllerInterface
     }
 
     public function processaRequisicao(): void
-    {
-        echo $this->renderizaHtml('reserva/formulario.php', [
-            'carros' => $this->carroRepository->findAll()
-        ]);
+    {   
+        $dados = [];
+
+        if (isset($_GET['error']) && $_GET['error'] === 'reservado') {
+            $erro = 'Veículo já reservado na data solicitada!';
+            $dados['erro'] = $erro;
+        }
+
+        $dados['carros'] = $this->carroRepository->findAll();
+
+        echo $this->renderizaHtml('reserva/formulario.php', $dados);
     }
 }

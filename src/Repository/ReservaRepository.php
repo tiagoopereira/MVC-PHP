@@ -22,7 +22,6 @@ class ReservaRepository extends ParentRepository
         $reservas = [];
 
         $sql = "SELECT r.id, r.data_inicio, r.data_fim, r.nome_reservante, c.id as id_carro, c.nome as nome_carro FROM reservas r LEFT JOIN carros c ON r.id_carro = c.id WHERE (NOT(data_inicio > :data_fim OR data_fim < :data_inicio));";
-        // WHERE (NOT(data_inicio > :data_fim OR data_fim < :data_inicio))
 
         $sql = $this->pdo->prepare($sql);
         $sql->bindValue(":data_fim", $data_fim);
