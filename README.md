@@ -1,4 +1,4 @@
-# SistemaReservas
+# Sistema de Reservas
 ## Execução
 - composer install (Para instalar as dependências e gerar o arquivo de autoload).
 - Utilizando docker:
